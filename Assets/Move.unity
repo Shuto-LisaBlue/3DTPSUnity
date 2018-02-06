@@ -113,6 +113,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &847437526
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.004
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.713
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4952146689905648, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1124670767670214, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+      propertyPath: m_Name
+      value: Bullet
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 114351122565691900, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+  m_ParentPrefab: {fileID: 100100000, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &1432106994
 GameObject:
   m_ObjectHideFlags: 0
@@ -124,6 +171,7 @@ GameObject:
   - component: {fileID: 1432106998}
   - component: {fileID: 1432106997}
   - component: {fileID: 1432106996}
+  - component: {fileID: 1432106999}
   m_Layer: 0
   m_Name: MainCamera
   m_TagString: MainCamera
@@ -194,6 +242,21 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1432106999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1432106994}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2db20ee70912654f80ef19d0d9fe3f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Bullet: {fileID: 1124670767670214, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
+  Shooter: {fileID: 1432106995}
+  Speed: 100
+  Shotrate: 0.1
 --- !u!1001 &1735324204
 Prefab:
   m_ObjectHideFlags: 0
@@ -440,6 +503,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8eeff53cc8ac564eaa69fbf1da1d1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 5
+--- !u!1 &1908038433 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1124670767670214, guid: 4487a5e9638eb6f4f9d409e907b084c8,
+    type: 2}
+  m_PrefabInternal: {fileID: 847437526}
+--- !u!114 &1908038439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1908038433}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3157ed8b3cf7bd4bbb889e44354b82b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1939271538
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +533,7 @@ GameObject:
   - component: {fileID: 1939271539}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -537,7 +617,7 @@ GameObject:
   - component: {fileID: 2043900492}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -667,7 +747,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2120261563}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 4.124, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
