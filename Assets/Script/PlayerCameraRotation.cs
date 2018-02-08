@@ -17,7 +17,7 @@ public class PlayerCameraRotation : MonoBehaviour {
     void Update()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal");
-        animator.SetFloat("Direction", inputHorizontal);
+        animator.SetFloat("Direction", inputHorizontal * -1);
         inputVertical = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Speed", Mathf.Abs(inputVertical));
     }

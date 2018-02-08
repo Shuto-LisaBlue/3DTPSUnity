@@ -46,7 +46,7 @@ public class TPSCamera : MonoBehaviour
         {
             AngY = AngY + 10.0f * Time.deltaTime * RotSpeed;
         }
-        AngX = Mathf.Clamp(AngX, 0.0f, 89.999f);
+        AngX = Mathf.Clamp(AngX, -79.999f, 79.999f);
 
         float dist = Vector3.Distance(trfCamera.position, Center);
         RaycastHit RayHit;
@@ -80,7 +80,7 @@ public class TPSCamera : MonoBehaviour
         }
 
         CameraPos = Quaternion.AngleAxis(AngY, Vector3.up) *
-                Quaternion.AngleAxis(AngX - 20, Vector3.right) * initCameraPos;
+                Quaternion.AngleAxis(AngX, Vector3.right) * initCameraPos;
         trfCamera.position = Center + CameraPos;
         trfCamera.LookAt(Center);
     }
