@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Runtime.InteropServices;
 
 public class TPSCamera : MonoBehaviour
 {
@@ -20,32 +21,28 @@ public class TPSCamera : MonoBehaviour
         initCameraPos = new Vector3(0, 0, -Radius);
         myTrf = transform;
         trfCamera.position = myTrf.position + Offset + initCameraPos;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame
     void LateUpdate()
     {
         Center = myTrf.position + Offset;
-        if (Input.GetMouseButtonDown(1))
+
+        if (Input.GetKeyUp(KeyCode.Q))
         {
             MousePosX = Input.mousePosition.x;
             MousePosY = Input.mousePosition.y;
             nAngX = AngX;
             nAngY = AngY;
         }
-        if (Input.GetMouseButton(1))
+        if (!Input.GetKey(KeyCode.Q))
         {
             AngY = nAngY - (MousePosX - Input.mousePosition.x) / 5.0f;
             AngX = nAngX + (MousePosY - Input.mousePosition.y) / 5.0f;
         }
-        if (Input.GetKey(KeyCode.Q))
-        {
-            AngY = AngY - 10.0f * Time.deltaTime * RotSpeed;
-        }
-        else if (Input.GetKey(KeyCode.E))
-        {
-            AngY = AngY + 10.0f * Time.deltaTime * RotSpeed;
-        }
+
         AngX = Mathf.Clamp(AngX, -79.999f, 79.999f);
 
         float dist = Vector3.Distance(trfCamera.position, Center);
