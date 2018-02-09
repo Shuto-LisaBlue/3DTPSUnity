@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
 
-public class PlayerCameraRotation : MonoBehaviour {
+public class PlayerCameraRotation : MonoBehaviour
+{
     float inputHorizontal;
     float inputVertical;
     Rigidbody rb;
     Animator animator;
+    bool TouchGround = true;
 
     public float moveSpeed = 3f;
 
@@ -20,8 +22,22 @@ public class PlayerCameraRotation : MonoBehaviour {
         animator.SetFloat("Direction", inputHorizontal * -1);
         inputVertical = Input.GetAxisRaw("Vertical");
         animator.SetFloat("Speed", Mathf.Abs(inputVertical));
-    }
+        var jump = Input.GetAxis("Jump");
 
+        if (jump != 0 && TouchGround == true)
+        {
+            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            TouchGround = false;
+        }
+    }
+    void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.tag != "Target")
+        {
+            TouchGround = true;
+        }
+        else TouchGround = false;
+    }
     void FixedUpdate()
     {
         // カメラの方向から、X-Z平面の単位ベクトルを取得

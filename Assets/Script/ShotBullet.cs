@@ -61,6 +61,12 @@ public class ShotBullet : MonoBehaviour
         if (RestBullet <= 0 && LastShot > ReloadTime)
         {
             RestBullet = FullBullet;
+            ReticleNoise = 0;
+        }
+        if (Input.GetKeyDown(KeyCode.R) && RestBullet != FullBullet)
+        {
+            RestBullet = 0;
+            LastShot = 0;
         }
         if (AutoShot == true)
         {

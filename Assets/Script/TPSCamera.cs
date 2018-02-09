@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 
 public class TPSCamera : MonoBehaviour
 {
-
+    private GameObject _object;
     public Transform trfCamera;
     public Vector3 Offset = new Vector3(0, 0, 0);
     public float RotSpeed = 10.0f;
@@ -18,6 +18,8 @@ public class TPSCamera : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        _object = GameObject.Find("Start");
+        this.transform.position = _object.transform.position + Vector3.up;
         initCameraPos = new Vector3(0, 0, -Radius);
         myTrf = transform;
         trfCamera.position = myTrf.position + Offset + initCameraPos;
