@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class ShotBullet : MonoBehaviour
+public class ShotBullet2P : MonoBehaviour
 {
     private GameObject Bullet;
     public Transform Shooter;
@@ -63,14 +63,14 @@ public class ShotBullet : MonoBehaviour
             RestBullet = FullBullet;
             ReticleNoise = 0;
         }
-        if (Input.GetAxis("Reload1P") != 0 && RestBullet != FullBullet)
+        if (Input.GetAxis("Reload2P") != 0 && RestBullet != FullBullet)
         {
             RestBullet = 0;
             LastShot = 0;
         }
         if (AutoShot == true)
         {
-            if (Input.GetAxis("Fire1") != 0 && LastShot > Shotrate && RestBullet > 0)
+            if (Input.GetAxis("Fire12P") != 0 && LastShot > Shotrate && RestBullet > 0)
             {
                 for (int i = 0; i < Pellet; i++)
                 {
@@ -94,7 +94,7 @@ public class ShotBullet : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxis("Fire1") != 0 && LastShot > Shotrate && RestBullet > 0)
+            if (Input.GetAxis("Fire12P") != 0 && LastShot > Shotrate && RestBullet > 0)
             {
                 for (int i = 0; i < Pellet; i++)
                 {

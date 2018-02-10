@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Runtime.InteropServices;
 
-public class TPSCamera : MonoBehaviour
+public class TPSCamera2P : MonoBehaviour
 {
     private GameObject _object;
     public Transform trfCamera;
@@ -11,13 +11,14 @@ public class TPSCamera : MonoBehaviour
     public float RotSpeed = 10.0f;
     private Transform myTrf;
     private float AngX = 0, AngY = 0;
-    private float Radius = 3.0f, subRadius;
+    private float nAngX = 0, nAngY = 0;
+    private float MousePosX, MousePosY, Radius = 3.0f, subRadius;
     private Vector3 CameraPos, initCameraPos, Center;
 
     // Use this for initialization
     void Start()
     {
-        _object = GameObject.Find("Start");
+        _object = GameObject.Find("Goal");
         this.transform.position = _object.transform.position + Vector3.up;
         initCameraPos = new Vector3(0, 0, -Radius);
         myTrf = transform;
@@ -31,14 +32,23 @@ public class TPSCamera : MonoBehaviour
     {
         Center = myTrf.position + Offset;
 
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            //MousePosX = Input.mousePosition.x;
+            //MousePosY = Input.mousePosition.y;
+
+            MousePosX = Input.GetAxisRaw("2PJoyX");
+            MousePosY = Input.GetAxisRaw("2PJoyY");
+            nAngX = AngX;
+            nAngY = AngY;
+        }
         if (!Input.GetKey(KeyCode.Q))
         {
             //AngY = nAngY - (MousePosX - Input.mousePosition.x) / 5.0f;
             //AngX = nAngX + (MousePosY - Input.mousePosition.y) / 5.0f;
 
-            AngX = AngX + (Input.GetAxisRaw("1PJoyY") * 2f);
-            AngY = AngY + (Input.GetAxisRaw("1PJoyX") * 2f);
-
+            AngX = AngX + (Input.GetAxisRaw("2PJoyY") * 2f);
+            AngY = AngY + (Input.GetAxisRaw("2PJoyX") * 2f);
         }
 
         AngX = Mathf.Clamp(AngX, -79.999f, 79.999f);
