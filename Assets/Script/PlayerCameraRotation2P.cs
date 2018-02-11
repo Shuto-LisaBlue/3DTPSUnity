@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerCameraRotation2P : MonoBehaviour
 {
@@ -23,24 +21,20 @@ public class PlayerCameraRotation2P : MonoBehaviour
     void Update()
     {
         inputHorizontal = Input.GetAxisRaw("Horizontal2P");
-        animator.SetFloat("Direction", inputHorizontal * -1);
+        animator.SetFloat("Direction", inputHorizontal);
         inputVertical = Input.GetAxisRaw("Vertical2P");
-        animator.SetFloat("Speed", Mathf.Abs(inputVertical));
+        animator.SetFloat("Speed", inputVertical);
         var jump = Input.GetAxis("Jump2P");
 
         if (jump != 0 && TouchGround == true)
         {
-            rb.AddForce(Vector3.up * 5f, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 3f, ForceMode.Impulse);
             TouchGround = false;
         }
     }
-    void OnCollisionEnter(Collision other)
+    void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag != "Target")
-        {
-            TouchGround = true;
-        }
-        else TouchGround = false;
+         TouchGround = true;
     }
     void FixedUpdate()
     {
@@ -55,10 +49,7 @@ public class PlayerCameraRotation2P : MonoBehaviour
         // 移動方向にスピードを掛ける。ジャンプや落下がある場合は、別途Y軸方向の速度ベクトルを足す。
         rb.velocity = moveForward * moveSpeed + new Vector3(0, rb.velocity.y, 0);
 
-        // キャラクターの向きを進行方向に
-        if (moveForward != Vector3.zero)
-        {
-            transform.rotation = Quaternion.LookRotation(moveForward);
-        }
+        transform.rotation = Quaternion.LookRotation(cameraForward);
+
     }
 }

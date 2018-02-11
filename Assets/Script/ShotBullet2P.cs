@@ -11,6 +11,7 @@ public class ShotBullet2P : MonoBehaviour
     public float Speed = 100.0f;
     public float Shotrate = 0.5f;
     private float LastShot = 0;
+    private bool ShotCheck = false;
     public float RestBullet = 30;
     public float FullBullet = 30;
     public int Pellet = 1;
@@ -94,11 +95,12 @@ public class ShotBullet2P : MonoBehaviour
         }
         else
         {
-            if (Input.GetAxis("Fire12P") != 0 && LastShot > Shotrate && RestBullet > 0)
+            if (Input.GetAxis("Fire12P") != 0 && ShotCheck == false && LastShot > Shotrate && RestBullet > 0)
             {
                 for (int i = 0; i < Pellet; i++)
                 {
                     GameObject bullets = GameObject.Instantiate(Bullet, Shooter.transform.position, Quaternion.identity) as GameObject;
+                    bullets.tag = "Bullet2P";
                     bullets.transform.position = Shooter.position;
                     bullets.GetComponent<TrailRenderer>().enabled = true;
                     Vector3 force;
@@ -113,7 +115,10 @@ public class ShotBullet2P : MonoBehaviour
                 }
                 RestBullet -= 1;
                 LastShot = 0;
+                ShotCheck = true;
             }
+            else if (Input.GetAxis("Fire12P") == 0) ShotCheck = false;
+
         }
 
     }

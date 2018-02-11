@@ -242,7 +242,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3157ed8b3cf7bd4bbb889e44354b82b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionDelete: 0
+  AliveTime: 3
+  CollisionStop: 1
+  GrenadeType: 0
+  GrenadePellet: 1
+  SplashPower: 0
+  Bullet: {fileID: 1124670767670214, guid: 4487a5e9638eb6f4f9d409e907b084c8, type: 2}
 --- !u!135 &135741853205158108
 SphereCollider:
   m_ObjectHideFlags: 1

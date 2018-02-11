@@ -6,13 +6,17 @@ public class FullBulletDraw : MonoBehaviour
 {
     public GameObject _object;
     ShotBullet _bullet;
+    ShotBullet2P _bullet2P;
+    public bool Mode2P = false;
     void Start()
     {
-        _bullet = _object.GetComponent<ShotBullet>();
+        if (Mode2P == false) _bullet = _object.GetComponent<ShotBullet>();
+        else _bullet2P = _object.GetComponent<ShotBullet2P>();
     }
 
     void Update()
     {
-        GetComponent<Text>().text = "/" + (_bullet.FullBullet).ToString();
+        if (Mode2P == false) GetComponent<Text>().text = "/" + (_bullet.FullBullet).ToString();
+        else GetComponent<Text>().text = "/" + (_bullet2P.FullBullet).ToString();
     }
 }

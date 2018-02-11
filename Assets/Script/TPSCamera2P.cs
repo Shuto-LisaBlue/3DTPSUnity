@@ -12,7 +12,7 @@ public class TPSCamera2P : MonoBehaviour
     private Transform myTrf;
     private float AngX = 0, AngY = 0;
     private float nAngX = 0, nAngY = 0;
-    private float MousePosX, MousePosY, Radius = 3.0f, subRadius;
+    private float MousePosX, MousePosY, Radius = -3.0f, subRadius;
     private Vector3 CameraPos, initCameraPos, Center;
 
     // Use this for initialization
