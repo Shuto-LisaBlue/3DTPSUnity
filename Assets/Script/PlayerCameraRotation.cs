@@ -6,7 +6,8 @@ public class PlayerCameraRotation : MonoBehaviour
     float inputVertical;
     Rigidbody rb;
     Animator animator;
-    bool TouchGround = true;
+    public GameObject MiniColider;
+    MiniColliderCheck miniCo;
 
     public float moveSpeed = 3f;
 
@@ -14,6 +15,7 @@ public class PlayerCameraRotation : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        miniCo = MiniColider.GetComponent<MiniColliderCheck>();
     }
 
     void Update()
@@ -24,15 +26,11 @@ public class PlayerCameraRotation : MonoBehaviour
         animator.SetFloat("Speed", inputVertical);
         var jump = Input.GetAxis("Jump");
 
-        if (jump != 0 && TouchGround == true)
+        if (jump != 0 && miniCo.TouchGround == true)
         {
             rb.AddForce(Vector3.up * 3f, ForceMode.Impulse);
-            TouchGround = false;
+            miniCo.TouchGround = false;
         }
-    }
-    void OnCollisionStay(Collision other)
-    {
-        TouchGround = true;
     }
     void FixedUpdate()
     {

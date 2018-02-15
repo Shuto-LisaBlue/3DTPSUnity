@@ -6,8 +6,9 @@ public class PlayerCameraRotation2P : MonoBehaviour
     float inputVertical;
     Rigidbody rb;
     Animator animator;
-    bool TouchGround = true;
     GameObject camera2p;
+    public GameObject MiniColider;
+    MiniColliderCheck miniCo;
 
     public float moveSpeed = 3f;
 
@@ -16,6 +17,7 @@ public class PlayerCameraRotation2P : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         camera2p = GameObject.FindWithTag("SubCamera");
+        miniCo = MiniColider.GetComponent<MiniColliderCheck>();
     }
 
     void Update()
@@ -26,16 +28,14 @@ public class PlayerCameraRotation2P : MonoBehaviour
         animator.SetFloat("Speed", inputVertical);
         var jump = Input.GetAxis("Jump2P");
 
-        if (jump != 0 && TouchGround == true)
+        if (jump != 0 && miniCo.TouchGround == true)
         {
             rb.AddForce(Vector3.up * 3f, ForceMode.Impulse);
-            TouchGround = false;
+            miniCo.TouchGround = false;
         }
     }
-    void OnCollisionStay(Collision other)
-    {
-         TouchGround = true;
-    }
+
+
     void FixedUpdate()
     {
         // カメラの方向から、X-Z平面の単位ベクトルを取得

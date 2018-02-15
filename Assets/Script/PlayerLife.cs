@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerLife : MonoBehaviour {
 
-    public float Life = 100;
+    [Range(0, 100)] public float Life = 100;
     private float Anti = 0;
     public GameObject DamageEffect;
     public bool Mode2P = false;

@@ -11,8 +11,7 @@ public class TPSCamera2P : MonoBehaviour
     public float RotSpeed = 10.0f;
     private Transform myTrf;
     private float AngX = 0, AngY = 0;
-    private float nAngX = 0, nAngY = 0;
-    private float MousePosX, MousePosY, Radius = -3.0f, subRadius;
+    private float Radius = -3.0f, subRadius;
     private Vector3 CameraPos, initCameraPos, Center;
 
     // Use this for initialization
@@ -32,16 +31,6 @@ public class TPSCamera2P : MonoBehaviour
     {
         Center = myTrf.position + Offset;
 
-        if (Input.GetKeyUp(KeyCode.Q))
-        {
-            //MousePosX = Input.mousePosition.x;
-            //MousePosY = Input.mousePosition.y;
-
-            MousePosX = Input.GetAxisRaw("2PJoyX");
-            MousePosY = Input.GetAxisRaw("2PJoyY");
-            nAngX = AngX;
-            nAngY = AngY;
-        }
         if (!Input.GetKey(KeyCode.Q))
         {
             //AngY = nAngY - (MousePosX - Input.mousePosition.x) / 5.0f;

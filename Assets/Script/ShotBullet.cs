@@ -10,7 +10,7 @@ public class ShotBullet : MonoBehaviour
     public Transform Camera;
     public float Speed = 100.0f;
     public float Shotrate = 0.5f;
-    private float LastShot = 0;
+    public float LastShot = 0;
     private bool ShotCheck = false;
     public float RestBullet = 30;
     public float FullBullet = 30;

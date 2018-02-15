@@ -10,6 +10,7 @@ public class EndFadeOut : MonoBehaviour {
     PlayerLife _playerLifePC1;
     PlayerLife _playerLifePC2;
     private float alpha = 0f;
+    public static int Winner = 1;
 
     void Start () {
         _playerLifePC1 = PC1.GetComponent<PlayerLife>();
@@ -23,5 +24,14 @@ public class EndFadeOut : MonoBehaviour {
             GetComponent<Image>().color = new Color(0f, 0f, 0f, alpha);
             alpha += 0.01f;
         }
+
+        if (_playerLifePC1.KnockOut == true) Winner = 2;
+        else if (_playerLifePC2.KnockOut == true) Winner = 1;
+
+        if(alpha >= 1.1)
+        {
+            //ここにシーン遷移の処理を書く
+        }
+
     }
 }
