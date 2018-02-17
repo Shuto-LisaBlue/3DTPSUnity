@@ -22,8 +22,6 @@ public class TPSCamera : MonoBehaviour
         initCameraPos = new Vector3(0, 0, -Radius);
         myTrf = transform;
         trfCamera.position = myTrf.position + Offset + initCameraPos;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Update is called once per frame

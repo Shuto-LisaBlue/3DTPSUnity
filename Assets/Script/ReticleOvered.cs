@@ -30,13 +30,13 @@ public class ReticleOvered : MonoBehaviour
     {
         if (mode2P == false)
         {
-            if (Mirror == true) pos = new Vector3(-252.5f + (_bullet.ReticleNoise * 100), -10.0f, 0f);
-            else pos = new Vector3(-252.5f + (_bullet.ReticleNoise * -100), -10.0f, 0f);
+            if (Mirror == true) pos = new Vector3(-322.3f + (_bullet.ReticleNoise * 100), -6.6f, 0f);
+            else pos = new Vector3(-322.3f + (_bullet.ReticleNoise * -100), -6.6f, 0f);
         }
         else
         {
-            if (Mirror == true) pos = new Vector3(252.5f + (_bullet2P.ReticleNoise * 100), -10.0f, 0f);
-            else pos = new Vector3(252.5f + (_bullet2P.ReticleNoise * -100), -10.0f, 0f);
+            if (Mirror == true) pos = new Vector3(318.8f + (_bullet2P.ReticleNoise * 100), -6.6f, 0f);
+            else pos = new Vector3(318.8f + (_bullet2P.ReticleNoise * -100), -6.6f, 0f);
 
         }
 

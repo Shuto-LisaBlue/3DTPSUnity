@@ -27,10 +27,30 @@ public class ShotBullet : MonoBehaviour
     public GameObject BulletLv2;
     public GameObject BulletLv3;
     public GameObject BulletLv4;
+    public AudioClip audioClip;
+    public AudioClip audioClip2;
+    private AudioSource audioSource;
+    private bool ReloadSE = false;
     // Use this for initialization
     void Start()
     {
         ReticleNoise = ReticleNMin;
+        audioSource = gameObject.GetComponent<AudioSource>();
+        audioSource.clip = audioClip;
+
+        Speed = PassesScript.Speed1P;
+        Shotrate = PassesScript.Shotrate1P;
+        RestBullet = PassesScript.RestBullet1P;
+        FullBullet = PassesScript.FullBullet1P;
+        Pellet = PassesScript.Pellet1P;
+        AutoShot = PassesScript.AutoShot1P;
+        ReloadTime = PassesScript.ReloadTime1P;
+        ReticleNoise = PassesScript.ReticleNoise1P;
+        ReticleNMin = PassesScript.ReticleNMin1P;
+        ReticleNMax = PassesScript.ReticleNMax1P;
+        ReticletoUp = PassesScript.ReticletoUp1P;
+        ReticletoZero = PassesScript.ReticletoZero1P;
+        GunLevel = PassesScript.GunLevel1P;
 
     }
 
@@ -63,18 +83,29 @@ public class ShotBullet : MonoBehaviour
         {
             RestBullet = FullBullet;
             ReticleNoise = 0;
+            audioSource.clip = audioClip;
         }
         if (Input.GetAxis("Reload1P") != 0 && RestBullet != FullBullet)
         {
+            ReloadSE = true;
             RestBullet = 0;
             LastShot = 0;
         }
+
+        if (ReloadSE == true)
+        {
+            audioSource.clip = audioClip2;
+            audioSource.Play();
+            ReloadSE = false;
+        }
+
         if (AutoShot == true)
         {
             if (Input.GetAxis("Fire1") != 0 && LastShot > Shotrate && RestBullet > 0)
             {
                 for (int i = 0; i < Pellet; i++)
                 {
+                    audioSource.Play();
                     GameObject bullets = GameObject.Instantiate(Bullet, Shooter.transform.position, Quaternion.identity) as GameObject;
                     bullets.tag = "Bullet1P";
                     bullets.transform.position = Shooter.position;
@@ -88,18 +119,21 @@ public class ShotBullet : MonoBehaviour
                     bullets.GetComponent<Rigidbody>().AddForce(force, ForceMode.Impulse);
                     ReticleNoise += ReticletoUp;
                     if (ReticleNoise > ReticleNMax) ReticleNoise = ReticleNMax;
-              
+
                 }
                 RestBullet -= 1;
                 LastShot = 0;
+                if (RestBullet <= 0) ReloadSE = true;
+
             }
         }
         else
         {
-            if (Input.GetAxis("Fire1") != 0 && ShotCheck == false &&  LastShot > Shotrate && RestBullet > 0)
+            if (Input.GetAxis("Fire1") != 0 && ShotCheck == false && LastShot > Shotrate && RestBullet > 0)
             {
                 for (int i = 0; i < Pellet; i++)
                 {
+                    audioSource.Play();
                     GameObject bullets = GameObject.Instantiate(Bullet, Shooter.transform.position, Quaternion.identity) as GameObject;
                     bullets.transform.position = Shooter.position;
                     bullets.GetComponent<TrailRenderer>().enabled = true;
@@ -116,6 +150,8 @@ public class ShotBullet : MonoBehaviour
                 RestBullet -= 1;
                 LastShot = 0;
                 ShotCheck = true;
+                if (RestBullet <= 0) ReloadSE = true;
+
             }
             else if (Input.GetAxis("Fire1") == 0) ShotCheck = false;
 
