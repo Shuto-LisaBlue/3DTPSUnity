@@ -27,6 +27,9 @@ public class ShotBullet2P : MonoBehaviour
     public GameObject BulletLv2;
     public GameObject BulletLv3;
     public GameObject BulletLv4;
+    public GameObject BulletLv5;
+    public GameObject BulletLv6;
+    public GameObject BulletLv7;
     public AudioClip audioClip;
     public AudioClip audioClip2;
     private AudioSource audioSource;
@@ -71,6 +74,15 @@ public class ShotBullet2P : MonoBehaviour
                 break;
             case 4:
                 Bullet = BulletLv4;
+                break;
+            case 5:
+                Bullet = BulletLv5;
+                break;
+            case 6:
+                Bullet = BulletLv6;
+                break;
+            case 7:
+                Bullet = BulletLv7;
                 break;
             default:
                 Bullet = BulletLv1;
